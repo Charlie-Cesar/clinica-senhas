@@ -1,1 +1,2 @@
+#
 print("Sistema de Gerenciamento de Senhas - Clínica")
