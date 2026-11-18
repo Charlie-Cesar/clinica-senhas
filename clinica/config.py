@@ -14,3 +14,8 @@ CATEGORIAS = {
     "N": "Normal",
     "P": "Preferencial",
 }
+
+# Política de prioridade (alternada): quantos preferenciais são chamados
+# seguidos antes de chamar 1 normal. Com 2, a ordem fica P, P, N, P, P, N...
+# Assim o preferencial tem prioridade, mas o normal não espera para sempre.
+PREFERENCIAIS_POR_NORMAL = 2
