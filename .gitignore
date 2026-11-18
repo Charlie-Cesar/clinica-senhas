@@ -1,0 +1,5 @@
+# Arquivos de treino (não fazem parte do projeto)
+treino*.py
+
+# Arquivos temporários que o Python cria sozinho
+__pycache__/
