@@ -77,6 +77,37 @@ class FilaEspecialidade:
 
         return senha
 
+    def aguardando(self):
+        """Quantos pacientes estão esperando nesta especialidade (as duas filas)."""
+        return len(self.filas["N"]) + len(self.filas["P"])
+
+    def ordem_prevista(self):
+        """Lista as senhas na ordem em que serão chamadas, SEM tirar ninguém das filas.
+
+        Simula várias chamadas seguidas usando a mesma política do
+        chamar_proximo(), mas só "anda" por cópias das filas.
+        """
+        preferenciais = list(self.filas["P"])  # cópias: as filas reais não mudam
+        normais = list(self.filas["N"])
+        seguidos = self.preferenciais_seguidos
+
+        ordem = []
+        p = 0  # quantos preferenciais já entraram na simulação
+        n = 0  # quantos normais já entraram na simulação
+        while True:
+            categoria = self._categoria_da_vez(p < len(preferenciais), n < len(normais), seguidos)
+            if categoria is None:  # acabaram as duas filas
+                break
+            if categoria == "P":
+                ordem.append(preferenciais[p])
+                p += 1
+                seguidos += 1
+            else:
+                ordem.append(normais[n])
+                n += 1
+                seguidos = 0
+        return ordem
+
 
 # Este bloco só roda quando o arquivo é executado direto
 # (python -m clinica.fila_especialidade), e não quando ele é importado.

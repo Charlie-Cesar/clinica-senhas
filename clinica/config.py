@@ -19,3 +19,7 @@ CATEGORIAS = {
 # seguidos antes de chamar 1 normal. Com 2, a ordem fica P, P, N, P, P, N...
 # Assim o preferencial tem prioridade, mas o normal não espera para sempre.
 PREFERENCIAIS_POR_NORMAL = 2
+
+# Tempo médio de cada atendimento, em minutos.
+# Tempo estimado de espera = pacientes à frente x TEMPO_MEDIO_ATENDIMENTO.
+TEMPO_MEDIO_ATENDIMENTO = 30
