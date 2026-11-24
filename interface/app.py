@@ -5,6 +5,8 @@ from tkinter import ttk
 
 from clinica.gerenciador import GerenciadorClinica
 from interface.aba_emissao import AbaEmissao
+from interface.aba_filas import AbaFilas
+from interface.aba_painel import AbaPainel
 
 
 class App(tk.Tk):
@@ -36,6 +38,8 @@ class App(tk.Tk):
 
         self.lista_abas = [
             AbaEmissao(self.abas, self),
+            AbaFilas(self.abas, self),
+            AbaPainel(self.abas, self),
         ]
         for aba in self.lista_abas:
             self.abas.add(aba, text=aba.TITULO)
@@ -44,7 +48,7 @@ class App(tk.Tk):
 
     def atualizar_tudo(self):
         """Pede para todas as abas mostrarem os dados mais recentes.
-
+ 
         É chamada depois de toda emissão ou chamada, para a tela nunca
         ficar desatualizada.
         """

@@ -45,6 +45,11 @@ class GerenciadorClinica:
             total += fila.aguardando()
         return total
 
+    def aguardando_por_categoria(self, sigla):
+        """Quantos esperam em cada categoria da especialidade: {"N": 3, "P": 1}."""
+        fila = self._fila(sigla)
+        return {"N": len(fila.filas["N"]), "P": len(fila.filas["P"])}
+
     def ordem_com_tempo(self, sigla):
         """Lista de (senha, minutos de espera) na ordem prevista de atendimento."""
         resultado = []

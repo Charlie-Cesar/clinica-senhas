@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import messagebox, ttk
 
 from clinica.config import CATEGORIAS, ESPECIALIDADES
+from interface.opcoes import OPCOES_ESPECIALIDADES, sigla_da_opcao
 
 
 class AbaEmissao(ttk.Frame):
@@ -22,8 +23,7 @@ class AbaEmissao(ttk.Frame):
         # --- 1. Especialidade ---
         ttk.Label(self, text="1. Escolha a especialidade:", font=("Segoe UI", 11, "bold")).pack(anchor="w")
         # Na lista aparece "CG - Clínica Geral"; o sistema só usa a sigla (antes do " - ")
-        opcoes = [f"{sigla} - {nome}" for sigla, nome in ESPECIALIDADES.items()]
-        ttk.Combobox(self, textvariable=self.especialidade, values=opcoes,
+        ttk.Combobox(self, textvariable=self.especialidade, values=OPCOES_ESPECIALIDADES,
                      state="readonly", width=30).pack(anchor="w", pady=(4, 16))
 
         # --- 2. Categoria ---
@@ -51,7 +51,7 @@ class AbaEmissao(ttk.Frame):
             messagebox.showwarning("Atenção", "Escolha o tipo de atendimento (Normal ou Preferencial).")
             return
 
-        sigla = self.especialidade.get().split(" - ")[0]
+        sigla = sigla_da_opcao(self.especialidade.get())
         try:
             senha = self.app.clinica.emitir_senha(sigla, self.categoria.get())
             a_frente, minutos = self.app.clinica.consultar_espera(senha.codigo())

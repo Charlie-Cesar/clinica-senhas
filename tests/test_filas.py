@@ -83,6 +83,11 @@ class TestChamada(unittest.TestCase):
         self.chamar("CA", 1)
         self.assertEqual(self.clinica.aguardando("CA"), 2)
 
+    def test_aguardando_por_categoria(self):
+        for c in ["N", "P", "N"]:
+            self.clinica.emitir_senha("CA", c)
+        self.assertEqual(self.clinica.aguardando_por_categoria("CA"), {"N": 2, "P": 1})
+
 
 class TestTempoDeEspera(unittest.TestCase):
 
