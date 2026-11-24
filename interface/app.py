@@ -6,7 +6,9 @@ from tkinter import ttk
 from clinica.gerenciador import GerenciadorClinica
 from interface.aba_emissao import AbaEmissao
 from interface.aba_filas import AbaFilas
+from interface.aba_historico import AbaHistorico
 from interface.aba_painel import AbaPainel
+from interface.aba_tempo import AbaTempo
 
 
 class App(tk.Tk):
@@ -40,6 +42,8 @@ class App(tk.Tk):
             AbaEmissao(self.abas, self),
             AbaFilas(self.abas, self),
             AbaPainel(self.abas, self),
+            AbaTempo(self.abas, self),
+            AbaHistorico(self.abas, self),
         ]
         for aba in self.lista_abas:
             self.abas.add(aba, text=aba.TITULO)
