@@ -27,7 +27,7 @@ class AbaEmissao(ttk.Frame):
                      state="readonly", width=30).pack(anchor="w", pady=(4, 16))
 
         # --- 2. Categoria ---
-        ttk.Label(self, text="2. Escolha o tipo de atendimento:", font=("Segoe UI", 11, "bold")).pack(anchor="w")
+        ttk.Label(self, text="2. Escolha o tipo de atendimento:", font=("Segoe UI", 11, "bold")).pack(anchor="w") 
         for letra, nome in CATEGORIAS.items():
             ttk.Radiobutton(self, text=f"{nome} ({letra})", variable=self.categoria,
                             value=letra).pack(anchor="w", pady=2)
